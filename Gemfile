@@ -20,6 +20,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'capybara-webkit'
   gem 'capybara'
+  gem 'fabrication'
+  gem 'database_cleaner'
+  gem 'pry-debugger'
   gem 'git-duet'
   gem 'dotenv'
 end
@@ -27,6 +30,8 @@ end
 group :development do
   gem 'git-pair'
   gem 'pry'
+  gem 'quiet_assets'
+  gem 'annotate', ">=2.5.0"
   gem 'rails-erd'
 end
 
@@ -35,5 +40,6 @@ group :doc do
 end
 
 group :test do
+  gem 'fivemat'
   gem 'simplecov', require: false
 end

@@ -26,6 +26,8 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     angularjs-rails (1.0.7)
+    annotate (2.5.0)
+      rake
     arel (4.0.0)
     atomic (1.1.10)
     builder (3.1.4)
@@ -47,13 +49,23 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    columnize (0.3.6)
+    database_cleaner (1.1.1)
+    debugger (1.6.2)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.3)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.3)
     diff-lcs (1.2.1)
     dotenv (0.9.0)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    fabrication (2.8.0)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
+    fivemat (1.2.1)
     git-duet (0.1.3)
     git-pair (0.1.0)
     haml (4.0.3)
@@ -107,8 +119,13 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry-debugger (0.2.2)
+      debugger (~> 1.3)
+      pry (~> 0.9.10)
     puma (2.6.0)
       rack (>= 1.1, < 2.0)
+    quiet_assets (1.0.2)
+      railties (>= 3.1, < 5.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -188,10 +205,14 @@ PLATFORMS
 
 DEPENDENCIES
   angularjs-rails
+  annotate (>= 2.5.0)
   capybara
   capybara-webkit
   coffee-rails (~> 4.0.0)
+  database_cleaner
   dotenv
+  fabrication
+  fivemat
   git-duet
   git-pair
   haml-rails (~> 0.4)
@@ -200,7 +221,9 @@ DEPENDENCIES
   omniauth-github
   pg
   pry
+  pry-debugger
   puma (~> 2.6.0)
+  quiet_assets
   rails (= 4.0.0)
   rails-erd
   rspec-rails (~> 2.0)

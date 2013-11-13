@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :find_event, only: [ :edit, :show ]
+  before_action :find_event, only: [ :edit, :show, :update ]
   before_action :event_params, only: [ :update ]
 
   def index
@@ -7,25 +7,34 @@ class EventsController < ApplicationController
   end
 
   def new
-  end
-
-  def edit
+    @event = Event.new
   end
 
   def show
   end
 
   def create
+    @event = current_user.events.new  event_params
+    if current_user.save
+      flash[:notice] = 'Successfully created'
+      redirect_to events_path
+    else
+      flash[:error] = 'Something went wrong'
+      render new_event_path
+    end
+  end
+
+  def edit
+    @event = Event.find(params[:id])
   end
 
   def update
-    @event = Event.find(params[:id])
-    if @event.update_attributes(@params)
-      flash[:notice] = "Event updated successfully" 
+    if @event.update event_params
+      flash[:notice] = "Event updated successfully"
       redirect_to events_path
     else
-      flash[:notice] = "Event wasn't updated as expected" 
-      redirect_to :back 
+      flash[:notice] = "Event wasn't updated as expected"
+      render :edit
     end
   end
 
@@ -33,13 +42,12 @@ class EventsController < ApplicationController
   end
 
   private
+
   def event_params
-     @params = params.require(:event).permit(:name, :details, :location)
+    @params = params.require(:event).permit!
   end
 
   def find_event
-     @event = Event.find(params[:id])
-   end
-
-
+    @event = Event.find(params[:id])
+  end
 end
